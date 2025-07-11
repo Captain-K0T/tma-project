@@ -5,20 +5,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Находим нашу кнопку по её ID
     const mainButton = document.getElementById('main-button');
+    // ID вашего счётчика в Яндекс.Метрике
+    const metrikaId = 103293805; 
+    // Уникальный идентификатор цели для этого TMA
+    const goalId = 'CLICK_TMA_1';
 
-    // Функция, которая будет отправлять данные в Яндекс.Метрику
-    // Пока что она пустая, мы наполним её позже.
+    // Функция, которая отправляет данные в Яндекс.Метрику
     function sendClickToMetrica() {
-        console.log('Отправляем событие в Метрику...');
-        // Здесь будет код для Метрики
+        // Проверяем, что функция ym доступна, прежде чем её вызывать
+        if (window.ym) {
+            window.ym(metrikaId, 'reachGoal', goalId);
+            console.log(`Цель ${goalId} отправлена в Метрику.`);
+        } else {
+            console.log('Счётчик Яндекс.Метрики ещё не загрузился.');
+        }
     }
 
     // Добавляем обработчик клика на кнопку
     mainButton.addEventListener('click', function() {
         // Вызываем функцию для аналитики
         sendClickToMetrica();
-
-        // Показываем простое уведомление для проверки
-        alert('Кнопка работает!');
+        
+        // Для наглядности можно показать пользователю, что действие принято
+        mainButton.innerText = 'Спасибо!';
+        mainButton.disabled = true;
     });
 });
