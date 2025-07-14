@@ -1,39 +1,46 @@
-/* Общие стили */
+/* --- ОБЩИЕ СТИЛИ И ШРИФТЫ --- */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: white;
-    background-color: #121212;
+    /* Используем Roboto для основного текста для читаемости */
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.85);
+    background-color: #0d0c1d; /* Глубокий темно-фиолетовый фон */
     overflow-x: hidden;
 }
 
+/* --- КОНТЕЙНЕР И ФОН --- */
 .container {
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Центрируем контент по вертикали */
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px 120px 20px; /* Увеличили нижний отступ для кнопки */
     box-sizing: border-box;
     text-align: center;
-    background: linear-gradient(160deg, #2c3e50 0%, #161a1e 100%);
+    /* Загадочный градиент */
+    background: radial-gradient(circle, #2c2a4a, #1f1d36, #0d0c1d);
 }
 
-.container.paywall {
+/* Для экранов с контентом наверху (онбординг, пейвол) */
+.container.start-aligned {
     justify-content: flex-start;
-    padding-top: 40px;
 }
 
-/* Стили текста */
+
+/* --- СТИЛИ ТЕКСТА --- */
 .title {
-    font-size: 28px;
-    font-weight: bold;
+    /* Используем особый шрифт для заголовков */
+    font-family: 'Cinzel', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #ffffff;
     margin: 20px 0 15px 0;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 8px rgba(232, 185, 255, 0.5); /* Эффект свечения */
 }
 .title.small-margin {
     margin-top: 25px;
@@ -42,79 +49,89 @@ body, html {
 
 .description {
     font-size: 17px;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0 0 30px 0;
     max-width: 450px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.8);
 }
 .description.small {
     font-size: 15px;
     margin-top: -15px;
 }
 
-/* Кнопка */
+
+/* --- КНОПКА (ИСПРАВЛЕНО) --- */
 .main-button {
+    position: fixed; /* Фиксируем кнопку */
+    bottom: 20px;    /* Отступ 20px от нижнего края */
+    left: 50%;       /* Центрируем */
+    transform: translateX(-50%); /* Точное центрирование */
+
     display: inline-block;
     padding: 15px 30px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 500;
     color: white;
-    background-color: #8e44ad;
+    background-color: #6a4c9c; /* Новый цвет кнопки */
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    text-decoration: none;
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     width: 90%;
     max-width: 400px;
     box-sizing: border-box;
 }
 .main-button:hover {
-    background-color: #9b59b6;
+    background-color: #7b5ab3;
 }
 .main-button:active {
-    transform: scale(0.98);
+    transform: translateX(-50%) scale(0.98); /* Корректируем transform при нажатии */
 }
 
-/* Прогресс-бар */
+
+/* --- ПРОГРЕСС-БАР (ИСПРАВЛЕНО) --- */
 .progress-bar-container {
     width: 90%;
     max-width: 400px;
     height: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     overflow: hidden;
     margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .progress-bar {
     height: 100%;
-    background-color: #00c774;
+    background: linear-gradient(90deg, #d88aff, #a053ff); /* Градиент для прогресса */
     border-radius: 4px;
     transition: width 0.5s ease-in-out;
 }
 
-/* Пейвол */
+
+/* --- ПЕЙВОЛ --- */
 .tariffs {
     width: 90%;
     max-width: 400px;
     margin-bottom: 30px;
 }
 .tariff {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 10px;
+    padding: 20px 15px;
+    margin-bottom: 12px;
     cursor: pointer;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background-color 0.2s;
     position: relative;
 }
 .tariff:hover {
-    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .tariff.best-choice {
-    border-color: #f1c40f;
+    border-color: #b388ff;
+    box-shadow: 0 0 15px rgba(179, 136, 255, 0.3);
 }
 .tariff p {
     margin: 0;
@@ -129,10 +146,11 @@ body, html {
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #f1c40f;
-    color: #121212;
-    padding: 3px 10px;
+    background: linear-gradient(45deg, #b388ff, #8c52ff);
+    color: white;
+    padding: 4px 12px;
     border-radius: 8px;
     font-size: 12px;
     font-weight: bold;
+    text-transform: uppercase;
 }
