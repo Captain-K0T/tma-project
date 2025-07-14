@@ -1,73 +1,138 @@
-/* Убираем стандартные отступы и настраиваем базовый шрифт */
+/* Общие стили */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: white; /* Базовый цвет текста */
-    overflow: hidden; /* Запрещаем скролл */
-    background-color: #1a1a1a; /* Цвет фона на случай, если картинка не загрузится */
+    color: white;
+    background-color: #121212;
+    overflow-x: hidden;
 }
 
-/* Основной контейнер, который занимает весь экран */
 .container {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центрируем контент по вертикали */
-    align-items: center; /* Центрируем контент по горизонтали */
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
-
-    /* ВРЕМЕННЫЙ ФОН: Градиент. Потом заменим на картинку */
-    /* Чтобы добавить картинку, нужно будет раскомментировать строки ниже и указать путь */
-    /* background-image: url('images/your-background-image.jpg');
-    background-size: cover;
-    background-position: center;
-    */
-    background: linear-gradient(135deg, #2c3e50, #3498db);
+    background: linear-gradient(160deg, #2c3e50 0%, #161a1e 100%);
 }
 
-/* Стили для заголовка */
+.container.paywall {
+    justify-content: flex-start;
+    padding-top: 40px;
+}
+
+/* Стили текста */
 .title {
     font-size: 28px;
     font-weight: bold;
-    margin: 0 0 15px 0;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Тень для лучшей читаемости */
+    margin: 20px 0 15px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.title.small-margin {
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
-/* Стили для описания */
 .description {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.5;
     margin: 0 0 30px 0;
-    max-width: 400px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Тень для лучшей читаемости */
+    max-width: 450px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.85);
+}
+.description.small {
+    font-size: 15px;
+    margin-top: -15px;
 }
 
-/* Стили для кнопки */
+/* Кнопка */
 .main-button {
+    display: inline-block;
     padding: 15px 30px;
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background-color: #f39c12; /* Яркий цвет для кнопки */
-    border: none;
+    background-color: #8e44ad;
     border-radius: 12px;
+    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
 }
-
-/* Эффект при наведении и нажатии на кнопку */
 .main-button:hover {
-    background-color: #e67e22;
+    background-color: #9b59b6;
 }
-
 .main-button:active {
     transform: scale(0.98);
-    background-color: #d35400;
+}
+
+/* Прогресс-бар */
+.progress-bar-container {
+    width: 90%;
+    max-width: 400px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.progress-bar {
+    height: 100%;
+    background-color: #00c774;
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Пейвол */
+.tariffs {
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 30px;
+}
+.tariff {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+}
+.tariff:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+.tariff.best-choice {
+    border-color: #f1c40f;
+}
+.tariff p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+.tariff small {
+    color: rgba(255, 255, 255, 0.7);
+}
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f1c40f;
+    color: #121212;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
 }

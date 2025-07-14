@@ -1,33 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализируем API Телеграма
-    const tg = window.Telegram.WebApp;
-    tg.ready(); // Сообщаем, что приложение готово
+    // Инициализация Telegram Web App
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.ready();
+    }
 
-    // Находим нашу кнопку по её ID
-    const mainButton = document.getElementById('main-button');
-    // ID вашего счётчика в Яндекс.Метрике
-    const metrikaId = 103293805; 
-    // Уникальный идентификатор цели для этого TMA
-    const goalId = 'CLICK_TMA_1';
+    const metrikaId = 103293805;
 
-    // Функция, которая отправляет данные в Яндекс.Метрику
-    function sendClickToMetrica() {
-        // Проверяем, что функция ym доступна, прежде чем её вызывать
+    // Функция для отправки цели в Метрику
+    function sendGoal(goalId) {
         if (window.ym) {
             window.ym(metrikaId, 'reachGoal', goalId);
             console.log(`Цель ${goalId} отправлена в Метрику.`);
         } else {
-            console.log('Счётчик Яндекс.Метрики ещё не загрузился.');
+            console.error('Счётчик Яндекс.Метрики не найден.');
         }
     }
 
-    // Добавляем обработчик клика на кнопку
-    mainButton.addEventListener('click', function() {
-        // Вызываем функцию для аналитики
-        sendClickToMetrica();
-        
-        // Для наглядности можно показать пользователю, что действие принято
-        mainButton.innerText = 'Спасибо!';
-        mainButton.disabled = true;
-    });
+    // Словарь: ID кнопки -> ID цели в Метрике
+    const goalMap = {
+        'start-onboarding': 'CLICK_START_ONBOARDING',
+        'onboarding-1-next': 'CLICK_ONBOARDING_1_NEXT',
+        'onboarding-2-next': 'CLICK_ONBOARDING_2_NEXT',
+        'onboarding-3-to-paywall': 'CLICK_ONBOARDING_3_TO_PAYWALL',
+        'paywall-submit': 'CLICK_PAYWALL_SUBMIT'
+    };
+
+    // Проходим по всем целям и назначаем обработчики
+    for (const buttonId in goalMap) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            const goalId = goalMap[buttonId];
+            button.addEventListener('click', function() {
+                sendGoal(goalId);
+            });
+        }
+    }
 });
