@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
     <title>AI Таролог - Шаг 3</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-v2.css?v=2">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="container start-aligned">
-        <div class="progress-bar-container"><div class="progress-bar" style="width: 100%;"></div></div>
-        <h1 class="title small-margin">Глубокие расклады для важных сфер жизни</h1>
-        <p class="description">Когда нужен не просто ответ, а детальный разбор ситуации. Выбирай специальные расклады — «Отношения», «Карьера», «Финансы» — и получай от AI подробный анализ с советами и прогнозами.</p>
-        <a href="paywall.html" id="onboarding-3-to-paywall" class="main-button">Разблокировать полный доступ</a>
+    <div id="app">
+        <div class="content-wrapper">
+            <div class="progress-bar-container"><div class="progress-bar" style="width: 100%;"></div></div>
+            <h1 class="title small-margin">Глубокие расклады для важных сфер жизни</h1>
+            <p class="description">Когда нужен не просто ответ, а детальный разбор ситуации. Выбирай специальные расклады — «Отношения», «Карьера», «Финансы» — и получай от AI подробный анализ с советами и прогнозами.</p>
+        </div>
+        <div class="bottom-block">
+            <img src="../images/book.svg" alt="Глубокие расклады" class="screen-image">
+            <a href="paywall.html" id="onboarding-3-to-paywall" class="main-button">Разблокировать полный доступ</a>
+        </div>
     </div>
     <script type="text/javascript" >
        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -24,6 +29,6 @@
        ym(103293805, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/103293805" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 </html>
