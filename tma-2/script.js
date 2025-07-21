@@ -5,24 +5,56 @@ document.addEventListener('DOMContentLoaded', function() {
         window.Telegram.WebApp.expand(); 
     }
 
+    // Прелоадинг всех изображений для предотвращения прыжков кнопки
+    const imageUrls = [
+        '../images/fortune.svg',
+        '../images/card.svg', 
+        '../images/compas.svg',
+        '../images/book.svg'
+    ];
+    
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+
     const metrikaId = 103293805;
 
     // --- ОБЩАЯ ЛОГИКА ДЛЯ ЦЕЛЕЙ ---
-    function sendGoal(goalId) {
+    function sendGoalWithCallback(goalId, callback) {
+        let callbackExecuted = false;
+        
+        function executeCallback() {
+            if (callbackExecuted) return;
+            callbackExecuted = true;
+            console.log(`Переход выполняется для цели ${goalId}`);
+            if (callback) callback();
+        }
+        
         if (window.ym) {
-            window.ym(metrikaId, 'reachGoal', goalId);
-            console.log(`Цель ${goalId} отправлена в Метрику.`);
+            window.ym(metrikaId, 'reachGoal', goalId, {
+                callback: function() {
+                    console.log(`Цель ${goalId} успешно отправлена в Метрику`);
+                    executeCallback();
+                }
+            });
+            // Резервная задержка на случай, если callback не сработает
+            setTimeout(function() {
+                console.log(`Резервный таймаут для цели ${goalId}`);
+                executeCallback();
+            }, 300);
         } else {
             console.error('Счётчик Яндекс.Метрики не найден.');
+            executeCallback();
         }
     }
 
     const goalMap = {
-        'start-onboarding': 'CLICK_START_ONBOARDING',
-        'onboarding-1-next': 'CLICK_ONBOARDING_1_NEXT',
-        'onboarding-2-next': 'CLICK_ONBOARDING_2_NEXT',
-        'onboarding-3-to-paywall': 'CLICK_ONBOARDING_3_TO_PAYWALL',
-        'paywall-submit': 'CLICK_PAYWALL_SUBMIT'
+        '2-start-onboarding': '2-CLICK_START_ONBOARDING',
+        '2-onboarding-1-next': '2-CLICK_ONBOARDING_1_NEXT',
+        '2-onboarding-2-next': '2-CLICK_ONBOARDING_2_NEXT',
+        '2-onboarding-3-to-paywall': '2-CLICK_ONBOARDING_3_TO_PAYWALL',
+        '2-paywall-submit': '2-CLICK_PAYWALL_SUBMIT'
     };
 
     for (const buttonId in goalMap) {
@@ -35,7 +67,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.preventDefault();
                     return;
                 }
-                sendGoal(goalId);
+                
+                // Предотвращаем немедленный переход
+                event.preventDefault();
+                
+                // Получаем href для перехода
+                const targetUrl = this.getAttribute('href');
+                
+                // Отправляем цель и только потом переходим
+                sendGoalWithCallback(goalId, function() {
+                    if (targetUrl) {
+                        window.location.href = targetUrl;
+                    }
+                });
             });
         }
     }

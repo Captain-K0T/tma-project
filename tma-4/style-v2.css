@@ -37,43 +37,35 @@ html, body {
     text-align: center;
 }
 
-/* --- 3. Нижний блок с картинкой и кнопкой (ЖЁСТКО ФИКСИРУЕМ) --- */
-.bottom-block {
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    /* Отступ для безопасной зоны (например, под "челкой" iPhone) */
-    padding-bottom: var(--safe-area-inset-bottom);
-}
-
-/* --- 4. Изображение --- */
+/* --- 3. Изображение (позиционируем отдельно) --- */
 .screen-image {
+    position: absolute;
+    bottom: 80px; /* Расстояние от низа до изображения */
+    left: 50%;
+    transform: translateX(-50%);
+    
     width: 110%;
     max-width: 700px;
-    max-height: 437,5px;
+    max-height: 300px; /* Ограничиваем высоту для предсказуемости */
     object-fit: contain;
-    
-    /* Отрицательный отступ для наложения кнопки */
-    margin-bottom: -150px; 
+    z-index: 0;
 }
 
-/* --- 5. Кнопка --- */
+/* --- 4. Кнопка (жёстко фиксируем к низу) --- */
 .main-button {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    
     width: 90%;
     max-width: 400px;
     padding: 15px 30px;
     box-sizing: border-box;
     
-    position: relative; 
-    z-index: 1; /* Кнопка всегда НАД картинкой */
+    z-index: 10; /* Кнопка всегда НАД всем */
 
-    text-align: center; /* Центрируем текст */
+    text-align: center;
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
