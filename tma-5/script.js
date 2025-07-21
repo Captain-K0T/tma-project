@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const goalMap = {
-        '5-start-onboarding': '5-CLICK_START_ONBOARDING',
-        '5-onboarding-1-next': '5-CLICK_ONBOARDING_1_NEXT',
-        '5-onboarding-2-next': '5-CLICK_ONBOARDING_2_NEXT',
-        '5-onboarding-3-to-paywall': '5-CLICK_ONBOARDING_3_TO_PAYWALL',
-        '5-paywall-submit': '5-CLICK_PAYWALL_SUBMIT'
+        'start-onboarding': '5-CLICK_START_ONBOARDING',
+        'onboarding-1-next': '5-CLICK_ONBOARDING_1_NEXT',
+        'onboarding-2-next': '5-CLICK_ONBOARDING_2_NEXT',
+        'onboarding-3-to-paywall': '5-CLICK_ONBOARDING_3_TO_PAYWALL',
+        'paywall-submit': '5-CLICK_PAYWALL_SUBMIT'
     };
 
     for (const buttonId in goalMap) {
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const paywallContainer = document.querySelector('.tariffs');
     if (paywallContainer) {
         const tariffs = paywallContainer.querySelectorAll('.tariff');
-        const submitButton = document.getElementById('5-paywall-submit');
+        const submitButton = document.getElementById('paywall-submit');
 
         tariffs.forEach(tariff => {
             tariff.addEventListener('click', function() {

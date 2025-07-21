@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const goalMap = {
-        '2-start-onboarding': '2-CLICK_START_ONBOARDING',
-        '2-onboarding-1-next': '2-CLICK_ONBOARDING_1_NEXT',
-        '2-onboarding-2-next': '2-CLICK_ONBOARDING_2_NEXT',
-        '2-onboarding-3-to-paywall': '2-CLICK_ONBOARDING_3_TO_PAYWALL',
-        '2-paywall-submit': '2-CLICK_PAYWALL_SUBMIT'
+        'start-onboarding': '2-CLICK_START_ONBOARDING',
+        'onboarding-1-next': '2-CLICK_ONBOARDING_1_NEXT',
+        'onboarding-2-next': '2-CLICK_ONBOARDING_2_NEXT',
+        'onboarding-3-to-paywall': '2-CLICK_ONBOARDING_3_TO_PAYWALL',
+        'paywall-submit': '2-CLICK_PAYWALL_SUBMIT'
     };
 
     for (const buttonId in goalMap) {
