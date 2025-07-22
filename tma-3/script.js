@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Прелоадинг всех изображений для предотвращения прыжков кнопки
     const imageUrls = [
-        'images/fortune.svg',
-        'images/card.svg', 
-        'images/compas.svg',
-        'images/book.svg'
+        'images/3-1.svg',
+        'images/3-2.svg', 
+        'images/3-3.svg',
+        'images/3-4.svg'
     ];
     
     imageUrls.forEach(url => {

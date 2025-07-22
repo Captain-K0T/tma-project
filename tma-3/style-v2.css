@@ -9,7 +9,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 
 /* --- 1. Основной контейнер приложения --- */
@@ -19,8 +19,8 @@ html, body {
   position: relative; /* Включаем позиционирование для дочерних элементов */
   overflow: hidden;
   
-  /* ВОЗВРАЩАЕМ ГРАДИЕНТНЫЙ ФОН */
-  background: radial-gradient(circle, #2c2a4a, #1f1d36, #0d0c1d);
+  /* Премиальный градиентный фон в тёмных тонах с золотистыми акцентами */
+  background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e, #0f1419);
   color: #ffffff;
 
   display: flex;
@@ -44,9 +44,9 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
     
-    width: 110%;
-    max-width: 700px;
-    max-height: 300px; /* Ограничиваем высоту для предсказуемости */
+    width: 70%;
+    max-width: 400px;
+    max-height: 250px; /* Ограничиваем высоту для предсказуемости */
     object-fit: contain;
     z-index: 0;
 }
@@ -60,7 +60,7 @@ html, body {
     
     width: 90%;
     max-width: 400px;
-    padding: 15px 30px;
+    padding: 16px 30px;
     box-sizing: border-box;
     
     z-index: 10; /* Кнопка всегда НАД всем */
@@ -68,48 +68,67 @@ html, body {
     text-align: center;
     text-decoration: none;
     font-size: 18px;
-    font-weight: 500;
-    border-radius: 12px;
+    font-weight: 700;
+    border-radius: 16px;
     cursor: pointer;
     
-    background-color: #6a4c9c;
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Премиальный золотисто-оранжевый градиент */
+    background: linear-gradient(135deg, #f7931e, #ffb347, #ffa500);
+    color: #000000;
+    border: none;
+    box-shadow: 0 8px 32px rgba(247, 147, 30, 0.4), 0 4px 16px rgba(255, 165, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.main-button:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 12px 40px rgba(247, 147, 30, 0.6), 0 6px 20px rgba(255, 165, 0, 0.4);
 }
 
 .main-button.disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 16px rgba(247, 147, 30, 0.2);
 }
 
 /* --- Остальные стили --- */
 .title {
-    font-family: 'Cinzel', serif;
-    font-size: 32px;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
     margin: 0 0 15px 0;
-    text-shadow: 0 0 10px rgba(200, 160, 255, 0.7);
+    /* Золотисто-белый градиентный текст */
+    background: linear-gradient(135deg, #ffffff, #f7931e, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 12px rgba(247, 147, 30, 0.3);
+    line-height: 1.3;
 }
 .description {
     font-size: 17px;
-    line-height: 1.6;
+    font-weight: 400;
+    line-height: 1.5;
     max-width: 450px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     margin: 0;
 }
 .progress-bar-container {
     width: 90%;
     max-width: 400px;
-    height: 8px;
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 4px;
+    height: 6px;
+    background-color: rgba(247, 147, 30, 0.15);
+    border-radius: 8px;
     margin-bottom: 25px;
     margin-left: 5%;
 }
 .progress-bar {
     height: 100%;
-    background-color: #8e44ad;
-    border-radius: 3px;
+    background: linear-gradient(90deg, #f7931e, #ffb347);
+    border-radius: 8px;
+    transition: width 0.3s ease;
 }
 
 /* Стили пейвола */
@@ -123,33 +142,88 @@ html, body {
     text-align: center;
 }
 .tariff {
-    background-color: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 14px 15px;
+    background-color: rgba(247, 147, 30, 0.08);
+    border: 2px solid rgba(247, 147, 30, 0.2);
+    border-radius: 16px;
+    padding: 16px 18px;
     margin-bottom: 12px;
     position: relative;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
 }
+
+.tariff:hover {
+    border-color: rgba(247, 147, 30, 0.4);
+    transform: translateY(-1px);
+}
+
 .tariff.selected {
-    border-color: #b388ff;
+    border-color: #f7931e;
+    background-color: rgba(247, 147, 30, 0.15);
+    box-shadow: 0 4px 16px rgba(247, 147, 30, 0.3);
 }
+.tariff p {
+    margin: 0;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.tariff small {
+    color: #f7931e;
+    font-weight: 500;
+}
+
 .tariff-row {
     display: flex; /* Делаем элементы внутри ряда гибкими */
-    gap: 10px;     /* Добавляем отступ между карточками */
+    gap: 12px;     /* Добавляем отступ между карточками */
 }
 
 .tariff-row .tariff {
     flex: 1;       /* Каждая карточка в ряду занимает равное пространство */
 }
+
 .badge {
     position: absolute;
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: #8c52ff;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #f7931e, #ffb347);
+    color: #000000;
+    padding: 6px 14px;
+    border-radius: 12px;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(247, 147, 30, 0.4);
+}
+
+/* Дополнительные стили для crypto дизайна */
+.small {
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.small-margin {
+    margin-bottom: 8px !important;
+}
+
+/* Стили для старта-выровненного контента */
+.start-aligned {
+    align-items: flex-start !important;
+    padding-top: 40px;
+}
+
+.start-aligned .content-wrapper {
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.start-aligned .title {
+    text-align: left;
+}
+
+.start-aligned .description {
+    text-align: left;
 }
