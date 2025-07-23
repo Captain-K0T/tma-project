@@ -44,8 +44,8 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
     
-    width: 66%;
-    max-width: 420px;
+    width: 53%;
+    max-width: 336px;
     max-height: 300px; /* Ограничиваем высоту для предсказуемости */
     object-fit: contain;
     z-index: 0;
