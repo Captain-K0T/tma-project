@@ -16,13 +16,12 @@ This is a collection of 5 Telegram Mini Apps (TMAs) for an "AI Таролог" (
 ### Directory Structure
 ```
 tma-project/
-├── images/           # Shared SVG icons (book.svg, card.svg, compas.svg, fortune.svg)
 ├── metrika-loader.js # Yandex Metrica initialization script
-├── tma-1/           # First TMA instance
-├── tma-2/           # Second TMA instance  
-├── tma-3/           # Third TMA instance
-├── tma-4/           # Fourth TMA instance
-└── tma-5/           # Fifth TMA instance
+├── tma-1/           # AI Таролог - Dark mystical theme (Cinzel + Roboto fonts)
+├── tma-2/           # Foody Scan - Light healthy theme (Inter + Roboto fonts)
+├── tma-3/           # Crypto App - Dark premium theme (Space Grotesk fonts)
+├── tma-4/           # Stickerface AI - Work in progress
+└── tma-5/           # BuddyFit - Work in progress
 ```
 
 ### Each TMA Directory Contains:
@@ -31,7 +30,9 @@ tma-project/
 - `paywall.html` - Subscription/payment page
 - `error.html` - Error page
 - `script.js` - JavaScript logic and analytics
-- `style-v2.css` - Styling
+- `style-v2.css` - Styling (with cache-busting versioning via `?v=N` query params)
+- `images/` - TMA-specific SVG assets (each TMA has its own themed images)
+- `metrika-loader.js` - Local copy of analytics script for TMA independence
 
 ## Development Commands
 
@@ -69,10 +70,13 @@ This project requires no build, compilation, or package management. Files are re
 
 ## Styling Architecture
 
-### CSS Variables
+### CSS Variables and Theming
 - Uses Telegram viewport variables: `--tg-viewport-stable-height`
-- Dark purple theme with gradient backgrounds
-- Custom fonts: Cinzel (headings) and Roboto (body text) from Google Fonts
+- Each TMA has distinct visual themes:
+  - **TMA-1**: Dark mystical purple with radial gradients, Cinzel + Roboto fonts
+  - **TMA-2**: Light healthy green with linear gradients, Inter + Roboto fonts  
+  - **TMA-3**: Dark premium theme with golden accents, Space Grotesk font
+  - **TMA-4/5**: Currently using TMA-1 styling as placeholder
 
 ### Key CSS Classes
 - `.main-button` - Primary action buttons (fixed positioning)
@@ -82,10 +86,18 @@ This project requires no build, compilation, or package management. Files are re
 
 ## TMA Differences
 
-Each TMA (1-5) is functionally identical but has:
+Each TMA is functionally identical but represents different products:
+- **TMA-1**: "AI Таролог" - Tarot reading app with mystical theming
+- **TMA-2**: "Foody Scan" - Food scanning app with healthy lifestyle theming  
+- **TMA-3**: "Crypto App" - Cryptocurrency/fintech app with premium theming
+- **TMA-4**: "Stickerface AI" - Sticker creation app (development in progress)
+- **TMA-5**: "BuddyFit" - Fitness support app (development in progress)
+
+Technical differences:
 - Unique analytics goal prefixes (TMA-2 uses "2-", TMA-3 uses "3-", etc.)
 - Separate button IDs matching the prefix pattern
 - Independent tracking for conversion analysis
+- Distinct visual themes and branding per app concept
 
 ## Common Patterns
 
