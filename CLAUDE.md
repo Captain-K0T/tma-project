@@ -20,8 +20,9 @@ tma-project/
 ├── tma-1/           # AI Таролог - Dark mystical theme (Cinzel + Roboto fonts)
 ├── tma-2/           # Foody Scan - Light healthy theme (Inter + Roboto fonts)
 ├── tma-3/           # Crypto App - Dark premium theme (Space Grotesk fonts)
-├── tma-4/           # Stickerface AI - Work in progress
-└── tma-5/           # BuddyFit - Work in progress
+├── tma-4/           # Stickerface AI - Sticker generation app (Nunito fonts, creative gradients)
+├── tma-5/           # BuddyFit - Work in progress
+└── update-standalone.sh # Script for safely updating standalone branches
 ```
 
 ### Each TMA Directory Contains:
@@ -46,6 +47,18 @@ Access at: `http://localhost:8080`
 
 ### No Build Process
 This project requires no build, compilation, or package management. Files are ready for deployment as-is.
+
+### Standalone Branch Management
+**IMPORTANT**: Use the automated script for updating standalone branches:
+```bash
+# Update single branch
+./update-standalone.sh 4
+
+# Update all branches
+./update-standalone.sh all
+```
+
+**NEVER manually switch to standalone branches for editing - this will cause local file confusion!**
 
 ## Core Functionality
 
@@ -99,6 +112,40 @@ Technical differences:
 - Independent tracking for conversion analysis
 - Distinct visual themes and branding per app concept
 
+## Git Workflow and Branch Management
+
+### Safe Development Workflow
+1. **Always work in the `main` branch** for development and changes
+2. **Never manually switch to standalone branches** - they are deployment-only branches
+3. **Use the automated script** to update standalone branches after changes
+
+### Standalone Branches
+Each TMA has a corresponding standalone branch (`tma-1-standalone`, `tma-2-standalone`, etc.) that contains:
+- Only files for that specific TMA in the root directory
+- Shared files (metrika-loader.js, .gitignore, .htaccess) 
+- The update script for reference
+
+These branches are used for individual deployment of each TMA.
+
+### Branch Update Process
+```bash
+# After making changes in main:
+git add .
+git commit -m "Your changes"
+git push origin main
+
+# Update standalone branches:
+./update-standalone.sh all  # Updates all 5 branches
+# OR
+./update-standalone.sh 3    # Updates only tma-3-standalone
+```
+
+**⚠️ CRITICAL WARNING**: 
+- Do NOT use `git checkout` to switch to standalone branches manually
+- Do NOT edit files while on standalone branches
+- Do NOT use `git rm -rf .` or similar destructive commands
+- The script handles all branch management safely
+
 ## Common Patterns
 
 When working with this codebase:
@@ -107,3 +154,4 @@ When working with this codebase:
 - Use the existing goal mapping pattern for analytics
 - Follow the established naming conventions for button IDs and goals
 - Preserve the fixed button positioning and responsive design
+- **Always use the main branch for development work**
