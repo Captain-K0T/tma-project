@@ -20,6 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const metrikaId = 103293805;
 
+    // --- FACEBOOK PIXEL СОБЫТИЕ ---
+    function sendFacebookEvent(eventName) {
+        if (window.fbq) {
+            window.fbq('track', eventName);
+            console.log(`Facebook Pixel: событие ${eventName} отправлено`);
+        } else {
+            console.error('Facebook Pixel не найден.');
+        }
+    }
+
     // --- ОБЩАЯ ЛОГИКА ДЛЯ ЦЕЛЕЙ ---
     function sendGoalWithCallback(goalId, callback) {
         let callbackExecuted = false;
@@ -74,7 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Получаем href для перехода
                 const targetUrl = this.getAttribute('href');
                 
-                // Отправляем цель и только потом переходим
+                // Отправляем цель и Facebook событие, потом переходим
+                if (buttonId === 'paywall-submit') {
+                    sendFacebookEvent('Subscription');
+                }
                 sendGoalWithCallback(goalId, function() {
                     if (targetUrl) {
                         window.location.href = targetUrl;
