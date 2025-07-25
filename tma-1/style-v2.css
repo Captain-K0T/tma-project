@@ -40,13 +40,11 @@ html, body {
 /* --- 3. Изображение (позиционируем отдельно) --- */
 .screen-image {
     position: absolute;
-    bottom: 80px; /* Расстояние от низа до изображения */
+    bottom: 100px; /* Расстояние от низа до изображения */
     left: 50%;
     transform: translateX(-50%);
     
-    width: 110%;
-    max-width: 700px;
-    max-height: 300px; /* Ограничиваем высоту для предсказуемости */
+    width: 60%;
     object-fit: contain;
     z-index: 0;
 }
