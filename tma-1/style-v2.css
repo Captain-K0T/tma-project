@@ -45,6 +45,7 @@ html, body {
     transform: translateX(-50%);
     
     width: 60%;
+    max-height: 50vh; /* Ограничиваем высоту чтобы не залезали на текст */
     object-fit: contain;
     z-index: 0;
 }
@@ -101,7 +102,7 @@ html, body {
     height: 8px;
     background-color: rgba(0,0,0,0.3);
     border-radius: 4px;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
     margin-left: 5%;
 }
 .progress-bar {
@@ -138,6 +139,7 @@ html, body {
 
 .tariff-row .tariff {
     flex: 1;       /* Каждая карточка в ряду занимает равное пространство */
+    padding: 7px 7.5px; /* Уменьшенные пэддинги для карточек месяц/неделя */
 }
 .badge {
     position: absolute;
